@@ -1,4 +1,5 @@
 using Application.Commands.CreateExpense;
+using Application.Commands.GetExpenses;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,7 +18,13 @@ public class ExpenseController : ControllerBase
         _mediator = mediator;
     }
 
-    [HttpPost(Name = "GetWeatherForecast")]
+    [HttpGet(Name = "GetExpenses")]
+    public async Task<GetExpensesCommandResult> GetAllAsync()
+    {
+        return await _mediator.Send(new GetExpensesCommand());
+    }
+
+    [HttpPost(Name = "AddExpense")]
     public async Task CreateAsync()
     {
         await _mediator.Send(new CreateExpenseCommand());

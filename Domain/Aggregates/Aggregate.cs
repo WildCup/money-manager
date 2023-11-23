@@ -1,6 +1,6 @@
 ﻿namespace Domain.Aggregates;
 
-public partial class Aggregate<TState> where TState : AggregateState, new()
+public class Aggregate<TState> where TState : AggregateState, new()
 {
 	public TState State { get; protected set; } = new();
 
@@ -8,7 +8,7 @@ public partial class Aggregate<TState> where TState : AggregateState, new()
 
 	private void HandleEvent(AggregateEvent @event)
 	{
-		var method = GetType().GetMethod("Handle", new Type[] { @event.GetType() }) ?? throw new ArgumentNullException($"You must handle event {@event.GetType().Name} in aggregate!!");
+		var method = this.GetType().GetMethod("Handle", new Type[] { @event.GetType() }) ?? throw new ArgumentNullException($"You must handle event {@event.GetType().Name} in aggregate!!");
 
 		method.Invoke(this, new object[] { @event });
 

@@ -19,7 +19,7 @@ public partial class ExpenseAggregate : Aggregate<ExpenseAggregateState>
 		AddEvent(new ExpenseDeletedEvent());
 	}
 
-	protected void Handle(ExpenseCreatedEvent @event)
+	public void Handle(ExpenseCreatedEvent @event)
 	{
 		State = new ExpenseAggregateState()
 		{
@@ -28,7 +28,7 @@ public partial class ExpenseAggregate : Aggregate<ExpenseAggregateState>
 		};;
 	}
 
-	protected void Handle(ExpenseModifiedEvent @event)
+	public void Handle(ExpenseModifiedEvent @event)
 	{
 		State = State with 
 		{
@@ -37,7 +37,7 @@ public partial class ExpenseAggregate : Aggregate<ExpenseAggregateState>
 		};
 	}
 
-	protected void Handle(ExpenseDeletedEvent @event)
+	public void Handle(ExpenseDeletedEvent @event)
 	{
 		State = State with { IsDeleted = true };
 	}
