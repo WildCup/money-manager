@@ -1,1 +1,1 @@
-global using Domain.Abstraction;
+global using MoneyManager.Domain.Abstraction;

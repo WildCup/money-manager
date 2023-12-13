@@ -1,7 +1,7 @@
-using Application.Commands.GetExpenses;
-using Domain.Aggregates;
+using MoneyManager.Application.Commands.GetExpenses;
+using MoneyManager.Domain.Aggregates;
 
-namespace Application.Factories;
+namespace MoneyManager.Application.Factories;
 
 
 public abstract class GetExpensesResultFactory

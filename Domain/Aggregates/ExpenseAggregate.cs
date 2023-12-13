@@ -1,9 +1,12 @@
-﻿using Domain.Events;
+﻿using MoneyManager.Domain.Aggregates.Abstraction;
+using MoneyManager.Domain.Events;
 
-namespace Domain.Aggregates;
+namespace MoneyManager.Domain.Aggregates;
 
-public partial class ExpenseAggregate : Aggregate<ExpenseAggregateState>
+public class ExpenseAggregate : Aggregate<ExpenseAggregateState>
 {
+	public ExpenseAggregate() { }
+
 	public ExpenseAggregate(string name, float amount)
 	{
 		AddEvent(new ExpenseCreatedEvent(name, amount));

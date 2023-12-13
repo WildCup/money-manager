@@ -1,10 +1,12 @@
-﻿namespace Domain.Aggregates;
+﻿namespace MoneyManager.Domain.Aggregates.Abstraction;
 
-public class Aggregate<TState> where TState : AggregateState, new()
+public abstract class Aggregate<TState> where TState : AggregateState, new()
 {
 	public TState State { get; protected set; } = new();
 
 	public List<AggregateEvent> UncommittedEvents { get; private set; } = new();
+
+	public Aggregate() { } //only use in repository
 
 	private void HandleEvent(AggregateEvent @event)
 	{
@@ -22,7 +24,7 @@ public class Aggregate<TState> where TState : AggregateState, new()
 
 	public void Build(IEnumerable<AggregateEvent> events)
 	{
-		foreach (var @event in events)
+		foreach (var @event in events.OrderBy(e => e.Version))
 			HandleEvent(@event);
 		
 		UncommittedEvents.Clear();

@@ -1,7 +1,7 @@
 using MediatR;
 using Microsoft.Extensions.Logging;
 
-namespace Application.Commands.CreateExpense;
+namespace MoneyManager.Application.Commands.CreateExpense;
 
 public class CreateExpenseCommandHandler : IRequestHandler<CreateExpenseCommand, CreateExpenseCommandResult>
 {

@@ -1,9 +1,9 @@
-using Application.Factories;
-using Domain.Aggregates;
+using MoneyManager.Application.Factories;
+using MoneyManager.Domain.Aggregates;
 using MediatR;
 using Microsoft.Extensions.Logging;
 
-namespace Application.Commands.GetExpenses;
+namespace MoneyManager.Application.Commands.GetExpenses;
 
 public class GetExpensesCommandHandler : IRequestHandler<GetExpensesCommand, GetExpensesCommandResult>
 {

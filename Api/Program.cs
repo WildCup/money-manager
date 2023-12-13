@@ -1,5 +1,5 @@
-using Application.Commands.CreateExpense;
-using Application.Factories;
+using MoneyManager.Application.Commands.CreateExpense;
+using MoneyManager.Application.Factories;
 
 var builder = WebApplication.CreateBuilder(args);
 

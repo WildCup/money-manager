@@ -1,4 +1,4 @@
-namespace Application.Commands.GetExpenses;
+namespace MoneyManager.Application.Commands.GetExpenses;
 
 public abstract class GetExpensesCommandResult
 {

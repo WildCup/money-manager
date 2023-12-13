@@ -1,4 +1,4 @@
-namespace Domain.Events;
+namespace MoneyManager.Domain.Events;
 
 public class ExpenseCreatedEvent : AggregateEvent
 {

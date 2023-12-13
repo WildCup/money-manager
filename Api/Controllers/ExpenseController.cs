@@ -1,9 +1,9 @@
-using Application.Commands.CreateExpense;
-using Application.Commands.GetExpenses;
+using MoneyManager.Application.Commands.CreateExpense;
+using MoneyManager.Application.Commands.GetExpenses;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Api.Controllers;
+namespace MoneyManager.Api.Controllers;
 
 [ApiController]
 [Route("[controller]")]
@@ -18,15 +18,15 @@ public class ExpenseController : ControllerBase
         _mediator = mediator;
     }
 
-    [HttpGet(Name = "GetExpenses")]
+    [HttpGet("expenses")]
     public async Task<GetExpensesCommandResult> GetAllAsync()
     {
         return await _mediator.Send(new GetExpensesCommand());
     }
 
-    [HttpPost(Name = "AddExpense")]
-    public async Task CreateAsync()
+    [HttpPost("expenses")]
+    public async Task CreateAsync(CreateExpenseCommand model)
     {
-        await _mediator.Send(new CreateExpenseCommand());
+        await _mediator.Send(model);
     }
 }
