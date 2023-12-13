@@ -1,25 +1,28 @@
 using MediatR;
 using Microsoft.Extensions.Logging;
+using MoneyManager.Domain.Aggregates;
+using MoneyManager.Infrastructure.Abstraction;
 
 namespace MoneyManager.Application.Commands.CreateExpense;
 
 public class CreateExpenseCommandHandler : IRequestHandler<CreateExpenseCommand, CreateExpenseCommandResult>
 {
     private readonly ILogger<CreateExpenseCommandHandler> _logger;
+    private readonly IExpenseRepository _repo;
 
-    public CreateExpenseCommandHandler(ILogger<CreateExpenseCommandHandler> logger)
+    public CreateExpenseCommandHandler(ILogger<CreateExpenseCommandHandler> logger, IExpenseRepository repo)
     {
         _logger = logger;
+        _repo = repo;
     }
 
-    public async Task<CreateExpenseCommandResult> Handle(CreateExpenseCommand request, CancellationToken cancellationToken)
+    public async Task<CreateExpenseCommandResult> Handle(CreateExpenseCommand command, CancellationToken cancellationToken)
     {
-        //create aggregate, save in database
-        await Task.Delay(1, cancellationToken);
+        var expense = new ExpenseAggregate(command.Name, command.Amount);
 
         _logger.LogInformation("Aggregate Expense created");
 
-        //return result
+        _repo.Save(expense);
         return new CreateExpenseCommandResult();
     }
 }

@@ -1,7 +1,13 @@
+using Microsoft.Extensions.Caching.Memory;
 using MoneyManager.Application.Commands.CreateExpense;
 using MoneyManager.Application.Factories;
+using MoneyManager.Infrastructure.Abstraction;
+using MoneyManager.Infrastructure.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddTransient<IExpenseRepository, ExpenseRepository>();
+builder.Services.AddSingleton<IMemoryCache>(provider => new MemoryCache(new MemoryCacheOptions{  }));
 
 builder.Services.AddTransient<GetExpensesResultFactory>(provider => 
 {
