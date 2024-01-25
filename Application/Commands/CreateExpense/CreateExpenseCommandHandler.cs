@@ -18,7 +18,7 @@ public class CreateExpenseCommandHandler : IRequestHandler<CreateExpenseCommand,
 
     public async Task<CreateExpenseCommandResult> Handle(CreateExpenseCommand command, CancellationToken cancellationToken)
     {
-        var expense = new ExpenseAggregate(command.Name, command.Amount);
+        var expense = new ExpenseAggregate(command.Name, command.Amount, command.Category);
 
         await Task.Delay(1000, cancellationToken);
         _logger.LogInformation("Aggregate Expense created");

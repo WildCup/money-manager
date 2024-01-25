@@ -3,6 +3,7 @@ using MoneyManager.Domain.Aggregates;
 using MediatR;
 using Microsoft.Extensions.Logging;
 using MoneyManager.Infrastructure.Abstraction;
+using Domain.Enums;
 
 namespace MoneyManager.Application.Commands.GetExpenses;
 
@@ -23,7 +24,7 @@ public class GetExpensesCommandHandler : IRequestHandler<GetExpensesCommand, Get
     {
         //create aggregate, save in database
         await Task.Delay(1, cancellationToken);
-        var expenses = new List<ExpenseAggregate>() { new("school",1600), new("house",4000) };
+        var expenses = new List<ExpenseAggregate>() { new("school",1600, CategoryType.Necessary), new("house",4000, CategoryType.Necessary) };
 
         var result = _repo.GetAll();
         _logger.LogInformation("Aggregate Expense retried from database");

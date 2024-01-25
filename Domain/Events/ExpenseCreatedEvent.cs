@@ -1,13 +1,10 @@
+using Domain.Enums;
+
 namespace MoneyManager.Domain.Events;
 
 public class ExpenseCreatedEvent : AggregateEvent
 {
-	public ExpenseCreatedEvent(string name, float amount): base()
-	{
-		Name = name;
-		Amount = amount;
-	}
-
-	public string Name { get; set; }
-	public float Amount { get; set; }
+	public required string Name { get; set; }
+	public required float Amount { get; set; }
+	public required CategoryType Category { get; set; }
 }

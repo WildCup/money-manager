@@ -21,7 +21,10 @@ public class ExpenseController : ControllerBase
     [HttpGet("expenses")]
     public async Task<GetExpensesCommandResult> GetAllAsync()
     {
-        return await _mediator.Send(new GetExpensesCommand());
+        return await _mediator.Send(new GetExpensesCommand()
+        {
+            Name = "Admin" //todo: auth using bearer token
+        });
     }
 
     [HttpPost("expenses")]
