@@ -20,6 +20,7 @@ public class CreateExpenseCommandHandler : IRequestHandler<CreateExpenseCommand,
     {
         var expense = new ExpenseAggregate(command.Name, command.Amount);
 
+        await Task.Delay(1000, cancellationToken);
         _logger.LogInformation("Aggregate Expense created");
 
         _repo.Save(expense);

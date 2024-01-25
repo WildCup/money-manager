@@ -1,8 +1,8 @@
 Hubert Hagel
 s24884
 
-- mediator pattern
-- state pattern
-- factory (builder) pattern
+- mediator pattern (Api/Controller)
+- state pattern ()
+- builder pattern (Infrastructure/Builders)
 
 - event sourcing

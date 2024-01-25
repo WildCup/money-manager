@@ -1,7 +1,6 @@
 using Microsoft.Extensions.Caching.Memory;
 using MoneyManager.Domain.Abstraction;
 using MoneyManager.Domain.Aggregates.Abstraction;
-using MoneyManager.Infrastructure.Exceptions;
 
 namespace MoneyManager.Infrastructure.Abstraction;
 
@@ -45,6 +44,7 @@ public class AggregateRepository<T, TState> : IAggregateRepository<T, TState>  w
 			events.Add(@event);
 
 		_memoryCache.Set(aggregate.State.Id, events);
+		var test = _memoryCache.Get(aggregate.State.Id);
 		
 		//save newest state
 		obj = _memoryCache.Get($"states-{typeof(TState)}") ?? new List<TState>();
@@ -54,5 +54,6 @@ public class AggregateRepository<T, TState> : IAggregateRepository<T, TState>  w
 		states.Add(aggregate.State);
 
 		_memoryCache.Set($"state-{typeof(TState)}", states);
+		var test2 = _memoryCache.Get($"state-{typeof(TState)}");
 	}
 }

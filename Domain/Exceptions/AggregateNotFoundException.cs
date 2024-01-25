@@ -1,4 +1,4 @@
-namespace MoneyManager.Infrastructure.Exceptions;
+namespace MoneyManager.Domain.Exceptions;
 
 public class AggregateNotFoundException : Exception
 {
